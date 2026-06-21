@@ -1,9 +1,42 @@
 name: fl_studio_workspace
+version: 0.0.1
 publish_to: none
+repository: https://github.com/prnvmrli/fl-studio
 
 environment:
   sdk: ">=3.12.0 <4.0.0"
   flutter: ">=3.44.0"
 
+workspace:
+  - packages/android_system_chrome
+
 dev_dependencies:
   melos: ^7.8.2
+
+melos:
+  sdkPath: .fvm/flutter_sdk
+  useRootAsPackage: true
+  repository: https://github.com/prnvmrli/fl-studio
+
+  command:
+    bootstrap:
+      usePubspecOverrides: true
+    version:
+      branch: main
+      releaseUrl: true
+      includeScopes: true
+      includeCommitId: true
+      linkToCommits: true
+      workspaceChangelog: true
+      changelogFormat:
+        includeDate: true
+      message: |
+        chore(release): publish packages
+
+        {new_package_versions}
+    publish:
+      branch: main
+      includeScopes: true
+      includeCommitId: true
+      linkToCommits: true
+      workspaceChangelog: true
