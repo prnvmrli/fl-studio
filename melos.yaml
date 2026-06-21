@@ -1,0 +1,16 @@
+name: fl_studio_workspace
+
+packages:
+  - apps/**
+  - packages/**
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+
+scripts:
+  analyze:
+    exec: dart analyze .
+  test:
+    exec: dart test
+sdkPath: .fvm/flutter_sdk
