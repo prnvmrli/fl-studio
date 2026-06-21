@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "android_system_chrome: example",
+      "request": "launch",
+      "type": "dart",
+      "program": "packages/android_system_chrome/example/lib/main.dart",
+      "cwd": "packages/android_system_chrome/example"
+    },
+    {
+      "name": "android_system_chrome: integration tests",
+      "request": "launch",
+      "type": "dart",
+      "program": "packages/android_system_chrome/example/integration_test/plugin_integration_test.dart",
+      "cwd": "packages/android_system_chrome/example"
+    }
+  ]
+}
