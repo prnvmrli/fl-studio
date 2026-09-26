@@ -36,21 +36,13 @@ class SidebarNav extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                Container(
-                  width: 36,
-                  height: 36,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [AppTheme.accentTeal, AppTheme.accentCyan],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(
-                    Icons.cleaning_services_rounded,
-                    color: AppTheme.surfaceDark,
-                    size: 20,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    'assets/logo.png',
+                    width: 36,
+                    height: 36,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 const SizedBox(width: 12),

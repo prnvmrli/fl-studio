@@ -1,7 +1,8 @@
 name: fclean
 description: A cross-platform CLI for safely cleaning Flutter build, cache, and system artifacts.
 version: 0.2.1
-repository: https://github.com/prathamesh-mali/flutter_cleaner
+publish_to: none
+repository: https://github.com/prnvmrli/fl-studio/tree/main/vendor/fclean
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
