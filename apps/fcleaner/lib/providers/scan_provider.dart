@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:fclean/fclean.dart';
 import 'package:flutter/foundation.dart';
 
+import '../services/widget_sync_service.dart';
+
 enum ScanState { idle, scanning, done, error }
 
 class ScanProvider extends ChangeNotifier {
@@ -80,6 +82,7 @@ class ScanProvider extends ChangeNotifier {
             onDone: () {
               _entries.sort((a, b) => b.bytes.compareTo(a.bytes));
               _state = ScanState.done;
+              WidgetSyncService.instance.syncScanEntries(_entries);
               notifyListeners();
             },
             onError: (Object error) {
@@ -98,6 +101,7 @@ class ScanProvider extends ChangeNotifier {
   Future<void> scanCaches() async {
     try {
       _cacheEntries = await _scanner.cacheEntries();
+      WidgetSyncService.instance.syncCacheEntries(_cacheEntries);
       notifyListeners();
     } catch (_) {
       // Cache scan failure is non-fatal.

@@ -2,8 +2,6 @@ import 'package:fclean/fclean.dart';
 import 'package:flutter/foundation.dart';
 
 class DoctorProvider extends ChangeNotifier {
-  DoctorProvider();
-
   final _service = DoctorService(
     process: const ProcessService(),
     platform: const PlatformService(),

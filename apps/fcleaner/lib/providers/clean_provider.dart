@@ -1,6 +1,8 @@
 import 'package:fclean/fclean.dart';
 import 'package:flutter/foundation.dart';
 
+import '../services/widget_sync_service.dart';
+
 enum CleanState { idle, discovering, ready, cleaning, done, error }
 
 class CleanProvider extends ChangeNotifier {
@@ -166,6 +168,7 @@ class CleanProvider extends ChangeNotifier {
       _cleanedCount = results.length;
       _currentTargetLabel = null;
       _state = CleanState.done;
+      WidgetSyncService.instance.syncAfterClean(_summary?.reclaimedBytes ?? 0);
       notifyListeners();
     } catch (e) {
       _errorMessage = e.toString();

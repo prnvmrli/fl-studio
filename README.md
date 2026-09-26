@@ -36,7 +36,7 @@ fl_studio/
 
 | App | Description | Platforms |
 |---|---|---|
-| <img src="apps/fcleaner/assets/logo.png" width="28" height="28" style="vertical-align: middle; border-radius: 6px;" /> [**FCleaner**](apps/fcleaner/) | Desktop disk cleanup & cache visualizer for Flutter developers. Reclaim disk space from `build/` folders, `.dart_tool/`, Gradle caches, and Xcode DerivedData with safe simulation, live stream scanning, and space analytics. | macOS, Linux, Windows |
+| <img src="apps/fcleaner/assets/logo.png" width="28" height="28" style="vertical-align: middle; border-radius: 6px;" /> [**FCleaner**](apps/fcleaner/) | Desktop disk cleanup & cache visualizer for Flutter developers with native macOS WidgetKit extensions. Reclaim disk space from `build/` folders, `.dart_tool/`, Gradle caches, and Xcode DerivedData with safe simulation, live stream scanning, and space analytics. | macOS, Linux, Windows |
 
 ### Packages (`packages/`)
 

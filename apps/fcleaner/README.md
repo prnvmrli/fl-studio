@@ -65,11 +65,20 @@ Over months of mobile and web development, Flutter projects silently accumulate 
 - **Theme Preferences**: Sleek cyber-dark theme with custom glassmorphism.
 - **History Management**: View and clear past cleanup run records.
 
+### 6. 🎛️ Native macOS WidgetKit Support
+- **Live Desktop & Notification Center Widgets**: Monitor developer cache buildup (Xcode DerivedData, Gradle, Pub Cache, CocoaPods) right on your macOS desktop without having to open the app.
+- **Multiple Sizes**:
+  - **Small (`systemSmall`)**: At-a-glance reclaimable space metric and cache health status.
+  - **Medium (`systemMedium`)**: Total reclaimable metric paired with color-coded status badges for individual cache categories.
+  - **Large (`systemLarge`)**: Itemized storage list showing exact cache footprints with quick deep-link buttons.
+- **Interactive Deep Links**: Clicking any widget directly opens FCleaner to the corresponding view (`Scan & Clean`, `Analytics`, or `Dashboard`).
+- **Reactive Background Sync**: Automatically updates timelines via `WidgetSyncService` whenever the desktop app performs a scan, cleans targets, or updates cache estimates.
+
 ---
 
 ## 🏗️ Architecture
 
-FCleaner is architected with a decoupled, reactive Provider pattern:
+FCleaner is architected with a decoupled, reactive Provider pattern and native Swift WidgetKit extensions:
 
 ```
 apps/fcleaner/
@@ -87,8 +96,17 @@ apps/fcleaner/
 │   │   ├── analytics_screen.dart  # Donut & bar chart visualizations
 │   │   ├── doctor_screen.dart     # Environment diagnostic checklist
 │   │   └── settings_screen.dart   # Configuration toggles & cleanup history
+│   ├── services/                  # Native platform bridges
+│   │   └── widget_sync_service.dart # Bi-directional bridge for macOS WidgetKit
 │   ├── theme/                     # Glassmorphic cyber-dark theme & design tokens
 │   └── widgets/                   # Reusable UI components (SidebarNav, CategoryChip, etc.)
+├── macos/
+│   ├── FCleanerWidget/            # Native SwiftUI WidgetKit extension target
+│   │   ├── FCleanerWidget.swift   # Timeline provider & widget definition
+│   │   ├── FCleanerWidgetViews.swift # Small, Medium, & Large SwiftUI widget designs
+│   │   ├── WidgetDataProvider.swift  # Swift data loader & cache parser
+│   │   └── Info.plist             # Widget extension bundle configuration
+│   └── Runner/                    # Host macOS Flutter desktop runner & AppDelegate
 ```
 
 ---
@@ -119,6 +137,19 @@ flutter run -d macos
 # macOS application bundle
 flutter build macos --release
 ```
+
+### 🧩 Adding macOS Widgets
+
+1. Build or run the macOS app so macOS registers the embedded widget extension:
+   ```bash
+   flutter build macos --debug
+   ```
+2. Open the **macOS Widget Gallery**:
+   - Right-click an empty area on your **Desktop** and select **Edit Widgets...**, or
+   - Click the date/time in the menu bar to open **Notification Center**, scroll down, and click **Edit Widgets**.
+3. Locate **FCleaner** in the left sidebar list of widget providers.
+4. Pick your desired widget size (**Small**, **Medium**, or **Large**) and drag it onto your Desktop or Notification Center.
+5. Launching FCleaner or running scans will dynamically update your desktop widget in real time!
 
 ---
 

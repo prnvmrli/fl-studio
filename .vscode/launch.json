@@ -2,17 +2,59 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "FCleaner",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "cwd": "apps/fcleaner"
+    },
+    {
+      "name": "FCleaner (Release)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "program": "lib/main.dart",
+      "cwd": "apps/fcleaner"
+    },
+    {
+      "name": "FCleaner: Tests",
+      "request": "launch",
+      "type": "dart",
+      "program": "test",
+      "cwd": "apps/fcleaner"
+    },
+    {
+      "name": "fclean CLI: scan",
+      "request": "launch",
+      "type": "dart",
+      "program": "bin/fclean.dart",
+      "cwd": "vendor/fclean",
+      "args": [
+        "scan"
+      ]
+    },
+    {
+      "name": "fclean CLI: doctor",
+      "request": "launch",
+      "type": "dart",
+      "program": "bin/fclean.dart",
+      "cwd": "vendor/fclean",
+      "args": [
+        "doctor"
+      ]
+    },
+    {
       "name": "android_system_chrome: example",
       "request": "launch",
       "type": "dart",
-      "program": "packages/android_system_chrome/example/lib/main.dart",
+      "program": "lib/main.dart",
       "cwd": "packages/android_system_chrome/example"
     },
     {
       "name": "android_system_chrome: integration tests",
       "request": "launch",
       "type": "dart",
-      "program": "packages/android_system_chrome/example/integration_test/plugin_integration_test.dart",
+      "program": "integration_test/plugin_integration_test.dart",
       "cwd": "packages/android_system_chrome/example"
     }
   ]

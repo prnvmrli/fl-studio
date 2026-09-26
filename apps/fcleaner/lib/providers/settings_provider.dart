@@ -74,49 +74,21 @@ class SettingsProvider extends ChangeNotifier {
     _save();
   }
 
-  void setGradle(bool value) {
+  void _updateConfig({bool? gradle, bool? xcode, bool? cocoapods, bool? trash}) {
     _cleanConfig = CleanConfig(
-      gradle: value,
-      xcode: _cleanConfig.xcode,
-      cocoapods: _cleanConfig.cocoapods,
-      trash: _cleanConfig.trash,
+      gradle: gradle ?? _cleanConfig.gradle,
+      xcode: xcode ?? _cleanConfig.xcode,
+      cocoapods: cocoapods ?? _cleanConfig.cocoapods,
+      trash: trash ?? _cleanConfig.trash,
     );
     notifyListeners();
     _save();
   }
 
-  void setXcode(bool value) {
-    _cleanConfig = CleanConfig(
-      gradle: _cleanConfig.gradle,
-      xcode: value,
-      cocoapods: _cleanConfig.cocoapods,
-      trash: _cleanConfig.trash,
-    );
-    notifyListeners();
-    _save();
-  }
-
-  void setCocoapods(bool value) {
-    _cleanConfig = CleanConfig(
-      gradle: _cleanConfig.gradle,
-      xcode: _cleanConfig.xcode,
-      cocoapods: value,
-      trash: _cleanConfig.trash,
-    );
-    notifyListeners();
-    _save();
-  }
-
-  void setTrash(bool value) {
-    _cleanConfig = CleanConfig(
-      gradle: _cleanConfig.gradle,
-      xcode: _cleanConfig.xcode,
-      cocoapods: _cleanConfig.cocoapods,
-      trash: value,
-    );
-    notifyListeners();
-    _save();
-  }
+  void setGradle(bool value) => _updateConfig(gradle: value);
+  void setXcode(bool value) => _updateConfig(xcode: value);
+  void setCocoapods(bool value) => _updateConfig(cocoapods: value);
+  void setTrash(bool value) => _updateConfig(trash: value);
 
   void addCleanupRecord(CleanupRecord record) {
     _history.insert(0, record);

@@ -5,6 +5,7 @@ import 'screens/clean_screen.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/doctor_screen.dart';
 import 'screens/settings_screen.dart';
+import 'services/widget_sync_service.dart';
 import 'theme/app_theme.dart';
 import 'widgets/sidebar_nav.dart';
 
@@ -17,6 +18,14 @@ class FCleanerApp extends StatefulWidget {
 
 class _FCleanerAppState extends State<FCleanerApp> {
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetSyncService.instance.initialize(
+      navigationHandler: _onNavigate,
+    );
+  }
 
   void _onNavigate(int index) {
     setState(() => _selectedIndex = index);
