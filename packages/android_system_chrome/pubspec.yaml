@@ -1,6 +1,6 @@
 name: android_system_chrome
 description: A Flutter plugin for managing Android system chrome behavior.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/prnvmrli/fl-studio/tree/main/packages/android_system_chrome
 issue_tracker: https://github.com/prnvmrli/fl-studio/issues
 
