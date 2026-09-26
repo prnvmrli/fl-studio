@@ -1,7 +1,7 @@
 name: fcleaner
 description: "FCleaner — A beautiful desktop GUI for cleaning Flutter build artifacts, caches, and system clutter."
 publish_to: 'none'
-version: 0.1.1
+version: 0.1.2
 
 environment:
   sdk: ">=3.12.0 <4.0.0"

@@ -15,6 +15,38 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`fcleaner` - `v0.1.2`](#fcleaner---v012)
+ - [`fl_studio_workspace` - `v0.0.3`](#fl_studio_workspace---v003)
+
+---
+
+#### `fcleaner` - `v0.1.2`
+
+ - **FEAT**(fcleaner): add native macOS WidgetKit extension and simplify codebase. ([ac27107a](https://github.com/prnvmrli/fl-studio/commit/ac27107a12d40b25d43a1a12d24650ded713c844))
+
+#### `fl_studio_workspace` - `v0.0.3`
+
+ - **FIX**(ci): fix macOS artifact packaging path in release workflow. ([4711ea2f](https://github.com/prnvmrli/fl-studio/commit/4711ea2f3c46661be6985d01895793d1b005e132))
+ - **FEAT**(fcleaner): add native macOS WidgetKit extension and simplify codebase. ([ac27107a](https://github.com/prnvmrli/fl-studio/commit/ac27107a12d40b25d43a1a12d24650ded713c844))
+
+## 0.0.3 - 2026-09-27
+
+ - **FIX**(ci): fix macOS artifact packaging path in release workflow. ([4711ea2f](https://github.com/prnvmrli/fl-studio/commit/4711ea2f3c46661be6985d01895793d1b005e132))
+ - **FEAT**(fcleaner): add native macOS WidgetKit extension and simplify codebase. ([ac27107a](https://github.com/prnvmrli/fl-studio/commit/ac27107a12d40b25d43a1a12d24650ded713c844))
+
+
+## 2026-09-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`android_system_chrome_example` - `v0.0.1`](#android_system_chrome_example---v001)
  - [`fclean` - `v0.2.2`](#fclean---v022)
  - [`fcleaner` - `v0.1.1`](#fcleaner---v011)
