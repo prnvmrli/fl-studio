@@ -5,7 +5,8 @@ import 'package:android_system_chrome/android_system_chrome_method_channel.dart'
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelAndroidSystemChrome platform = MethodChannelAndroidSystemChrome();
+  MethodChannelAndroidSystemChrome platform =
+      MethodChannelAndroidSystemChrome();
   const MethodChannel channel = MethodChannel('android_system_chrome');
 
   setUp(() {

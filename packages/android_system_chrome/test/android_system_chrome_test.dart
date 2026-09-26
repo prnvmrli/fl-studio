@@ -12,7 +12,8 @@ class MockAndroidSystemChromePlatform
 }
 
 void main() {
-  final AndroidSystemChromePlatform initialPlatform = AndroidSystemChromePlatform.instance;
+  final AndroidSystemChromePlatform initialPlatform =
+      AndroidSystemChromePlatform.instance;
 
   test('$MethodChannelAndroidSystemChrome is the default instance', () {
     expect(initialPlatform, isInstanceOf<MethodChannelAndroidSystemChrome>());
@@ -20,7 +21,8 @@ void main() {
 
   test('getPlatformVersion', () async {
     AndroidSystemChrome androidSystemChromePlugin = AndroidSystemChrome();
-    MockAndroidSystemChromePlatform fakePlatform = MockAndroidSystemChromePlatform();
+    MockAndroidSystemChromePlatform fakePlatform =
+        MockAndroidSystemChromePlatform();
     AndroidSystemChromePlatform.instance = fakePlatform;
 
     expect(await androidSystemChromePlugin.getPlatformVersion(), '42');

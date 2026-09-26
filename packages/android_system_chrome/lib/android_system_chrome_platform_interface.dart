@@ -8,7 +8,8 @@ abstract class AndroidSystemChromePlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static AndroidSystemChromePlatform _instance = MethodChannelAndroidSystemChrome();
+  static AndroidSystemChromePlatform _instance =
+      MethodChannelAndroidSystemChrome();
 
   /// The default instance of [AndroidSystemChromePlatform] to use.
   ///
