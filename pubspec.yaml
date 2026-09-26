@@ -25,7 +25,6 @@ melos:
       usePubspecOverrides: true
     version:
       branch: main
-      includePrivates: true
       releaseUrl: true
       includeScopes: true
       includeCommitId: true
