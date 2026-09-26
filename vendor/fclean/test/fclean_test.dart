@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:fclean/fclean.dart';
-import 'package:fclean/services/file_system_service.dart';
 import 'package:test/test.dart';
 
 void main() {

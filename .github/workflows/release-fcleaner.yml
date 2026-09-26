@@ -1,0 +1,125 @@
+name: Release FCleaner
+
+on:
+  push:
+    tags:
+      - 'v*'
+      - 'fcleaner-v*'
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Release tag (e.g. v0.1.0)'
+        required: true
+        default: 'v0.1.0'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: macOS
+            os: macos-latest
+            build_cmd: flutter build macos --release
+            artifact_file: fcleaner-macos.zip
+          - target: Windows
+            os: windows-latest
+            build_cmd: flutter build windows --release
+            artifact_file: fcleaner-windows.zip
+          - target: Linux
+            os: ubuntu-latest
+            build_cmd: flutter build linux --release
+            artifact_file: fcleaner-linux.tar.gz
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Linux build dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        working-directory: apps/fcleaner
+        run: flutter pub get
+
+      - name: Build release
+        working-directory: apps/fcleaner
+        run: ${{ matrix.build_cmd }}
+
+      - name: Package macOS bundle
+        if: matrix.target == 'macOS'
+        run: |
+          cd apps/fcleaner/build/macos/Build/Products/Release
+          zip -r -y ../../../../../../fcleaner-macos.zip fcleaner.app
+
+      - name: Package Windows bundle
+        if: matrix.target == 'Windows'
+        shell: pwsh
+        run: |
+          Compress-Archive -Path apps\fcleaner\build\windows\x64\runner\Release\* -DestinationPath fcleaner-windows.zip
+
+      - name: Package Linux bundle
+        if: matrix.target == 'Linux'
+        run: |
+          tar -czf fcleaner-linux.tar.gz -C apps/fcleaner/build/linux/x64/release/bundle .
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_file }}
+          path: ${{ matrix.artifact_file }}
+          if-no-files-found: error
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all built artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-artifacts
+          merge-multiple: true
+
+      - name: Determine Tag and Title
+        id: tag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            RAW_TAG="${{ github.event.inputs.tag_name }}"
+          else
+            RAW_TAG="${GITHUB_REF#refs/tags/}"
+          fi
+          # Strip 'fcleaner-' prefix if present so title becomes 'FCleaner v0.1.0'
+          VERSION="${RAW_TAG#fcleaner-}"
+          echo "tag=$RAW_TAG" >> $GITHUB_OUTPUT
+          echo "title=FCleaner $VERSION" >> $GITHUB_OUTPUT
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: ${{ steps.tag.outputs.title }}
+          files: |
+            release-artifacts/fcleaner-macos.zip
+            release-artifacts/fcleaner-windows.zip
+            release-artifacts/fcleaner-linux.tar.gz
+          generate_release_notes: true
+          draft: false
+          prerelease: false

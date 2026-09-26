@@ -9,6 +9,8 @@ environment:
 
 workspace:
   - packages/**
+  - apps/*
+  - vendor/*
 
 dev_dependencies:
   melos: ^7.8.2
@@ -23,6 +25,7 @@ melos:
       usePubspecOverrides: true
     version:
       branch: main
+      includePrivates: true
       releaseUrl: true
       includeScopes: true
       includeCommitId: true
