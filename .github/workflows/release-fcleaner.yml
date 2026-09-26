@@ -64,7 +64,7 @@ jobs:
         if: matrix.target == 'macOS'
         run: |
           cd apps/fcleaner/build/macos/Build/Products/Release
-          zip -r -y ../../../../../../fcleaner-macos.zip fcleaner.app
+          zip -r -y "$GITHUB_WORKSPACE/fcleaner-macos.zip" fcleaner.app
 
       - name: Package Windows bundle
         if: matrix.target == 'Windows'
