@@ -1,6 +1,3 @@
-[submodule "vendor/macpulse"]
-	path = vendor/macpulse
-	url = https://github.com/prnvmrli/macpulse
 [submodule "vendor/fclean"]
 	path = vendor/fclean
 	url = https://github.com/prnvmrli/fclean
